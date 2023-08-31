@@ -1,7 +1,11 @@
 .menu-item {
+    appearance: none;
+    background-color: transparent;
+    border: none;
     color: #FFF;
     font-size: 25px;
     font-style: normal;
+    outline: 0;
     padding: 0px 16px;
     text-decoration: none;
 }

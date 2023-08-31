@@ -9,6 +9,7 @@
     <body class="bg-black" style="padding-left: 76px;background-image: url('images/backgound.png');background-attachment: fixed; background-position: top; background-size: cover; height:100vh; overflow: auto;">
         <nav class="fixed-top mx-auto" style="margin-top: 55px; padding-left: 76px;">
             <a class="menu-item" href="index.html">HOME</a>
+            <button id="menu-item-tools" class="menu-item">TOOLS</button>
         </nav>
 
         <section>
@@ -21,7 +22,7 @@
             </div>
             
             <div class="mx-auto px-4 mt-5">
-                <h2 class="text-white" style="font-size: 92px;">TOOLS</h2>
+                <h2 id="tools" class="text-white" style="font-size: 92px;">TOOLS</h2>
 
                 <div>
                     <img src="images/apps-bubble.png" style="width: 300px; margin-left: 200px;"/>
@@ -51,6 +52,42 @@
                 </div>
             </div>
         </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-KyZXEAg3QhqLMpG8r+Y9q3uz4pX3p1n8xb8z6EwJVjE=" crossorigin="anonymous"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+              var toolsButton = document.getElementById("menu-item-tools");
+              var toolsSection = document.getElementById("tools");
+            
+              toolsButton.addEventListener("click", function() {
+                smoothScrollTo(toolsSection);
+              });
+            
+              function smoothScrollTo(target) {
+                var targetPosition = target.getBoundingClientRect().top + window.scrollY;
+                var startPosition = window.scrollY;
+                var distance = targetPosition - startPosition;
+                var startTime = null;
+                var duration = 500; 
+            
+                function animation(currentTime) {
+                  if (startTime === null) startTime = currentTime;
+                  var timeElapsed = currentTime - startTime;
+                  var ease = easeInOutCubic(timeElapsed, startPosition, distance, duration);
+                  window.scrollTo(0, ease);
+                  if (timeElapsed < duration) requestAnimationFrame(animation);
+                }
+            
+                function easeInOutCubic(t, b, c, d) {
+                  t /= d / 2;
+                  if (t < 1) return c / 2 * t * t * t + b;
+                  t -= 2;
+                  return c / 2 * (t * t * t + 2) + b;
+                }
+            
+                requestAnimationFrame(animation);
+              }
+            });
+            </script>
     </body>
 
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
